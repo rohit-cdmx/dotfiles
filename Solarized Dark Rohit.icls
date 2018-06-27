@@ -1,10 +1,10 @@
 <scheme name="Solarized Dark Rohit" version="142" parent_scheme="Default">
   <option name="FONT_SCALE" value="1.0" />
   <metaInfo>
-    <property name="created">2018-06-11T11:54:01</property>
+    <property name="created">2018-06-27T13:55:16</property>
     <property name="ide">PhpStorm</property>
-    <property name="ideVersion">2018.1.5.0.0</property>
-    <property name="modified">2018-06-11T11:54:10</property>
+    <property name="ideVersion">2018.1.6.0.0</property>
+    <property name="modified">2018-06-27T13:55:30</property>
     <property name="originalScheme">Solarized Dark Rohit</property>
   </metaInfo>
   <option name="LINE_SPACING" value="1.1" />
@@ -1194,6 +1194,11 @@
     <option name="JS.GLOBAL_VARIABLE">
       <value>
         <option name="FOREGROUND" value="859900" />
+      </value>
+    </option>
+    <option name="JS.REGEXP">
+      <value>
+        <option name="FOREGROUND" value="89cff0" />
       </value>
     </option>
     <option name="JSP_ATTRIBUTE_NAME">
