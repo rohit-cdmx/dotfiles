@@ -37,7 +37,7 @@ parse_git_branch () {
 }
 
 function prompt_command() {
-  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h \w\a\]\[${BOLD}${GREEN}\]\w\[$ORANGE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$ORANGE\]\n[\T] \$ \[$RESET\]"
+  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h\a\]\[${BOLD}${GREEN}\]\w\[$ORANGE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$ORANGE\]\n[\T] \$ \[$RESET\]"
 }
 
 safe_append_prompt_command prompt_command
