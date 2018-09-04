@@ -9,7 +9,7 @@ if tput setaf 1 &> /dev/null; then
       ORANGE=$(tput setaf 172)
       GREEN=$(tput setaf 190)
       PURPLE=$(tput setaf 141)
-      WHITE=$(tput setaf 0)
+      WHITE=$(tput setaf 255)
     else
       MAGENTA=$(tput setaf 5)
       ORANGE=$(tput setaf 4)
@@ -37,7 +37,13 @@ parse_git_branch () {
 }
 
 function prompt_command() {
-  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h\a\]\[${BOLD}${GREEN}\]\w\[$ORANGE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$ORANGE\]\n[\T] \$ \[$RESET\]"
+  if [[ ${EUID} == 0 ]] ; then
+    MY_PROMPT="#"
+  else
+    MY_PROMPT="$"
+  fi
+
+  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h\a\]\[${BOLD}${GREEN}\]\w\[$RESET\]\[$ORANGE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[${BOLD}${PURPLE}\]\$(parse_git_branch)\[$RESET\]\n\[$WHITE\][\T] \[$BOLD\]$MY_PROMPT\[$RESET\] "
 }
 
 safe_append_prompt_command prompt_command
