@@ -30,10 +30,10 @@ else
 fi
 
 parse_git_dirty () {
-  [[ $(git status 2> /dev/null | tail -n1 | cut -c 1-17) != "nothing to commit" ]] && echo "*"
+  [[ $(git status 2> /dev/null | tail -n1 | cut -c 1-17) != "nothing to commit" ]] && echo " *"
 }
 parse_git_branch () {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ \(\1$(parse_git_dirty)\)/"
 }
 
 function prompt_command() {
@@ -43,7 +43,7 @@ function prompt_command() {
     MY_PROMPT="$"
   fi
 
-  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h\a\]\[${BOLD}${GREEN}\]\w\[$RESET\]\[$ORANGE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[${BOLD}${PURPLE}\]\$(parse_git_branch)\[$RESET\]\n\[$WHITE\][\T] \[$BOLD\]$MY_PROMPT\[$RESET\] "
+  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h\a\]\[$GREEN\]\w\[$RESET\]\[$PURPLE\]\$(parse_git_branch)\[$RESET\]\n\[$WHITE\][\T] \[$BOLD\]$MY_PROMPT\[$RESET\] "
 }
 
 safe_append_prompt_command prompt_command
